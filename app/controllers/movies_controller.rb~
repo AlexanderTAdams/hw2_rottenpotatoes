@@ -18,7 +18,6 @@ class MoviesController < ApplicationController
 	session["ratings"] = params["ratings"]
 	#session["sort"] = params["sort"] 
 	end
-	
 	@buttons = session["ratings"]
 	@sort = session["sort"]
 	if !@sort.nil? || !@buttons.nil?
@@ -31,6 +30,7 @@ class MoviesController < ApplicationController
     @movies = @movies.find_all_by_rating(@buttons.keys) unless @buttons.nil?
     @buttons.nil? && @movies={}
   end
+
 
   def new
     # default: render 'new' template
@@ -57,13 +57,11 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @movie.destroy
     flash[:notice] = "Movie '#{@movie.title}' deleted."
-    redirect_to movies_path 
+    redirect_to movies_path
   end
-
   def search_tmdb
     #hardwired to simulate failure
     flash[:warning] = "'#{params[:search_terms]}' was not found in TMDb."
     redirect_to movies_path
   end
-
 end
