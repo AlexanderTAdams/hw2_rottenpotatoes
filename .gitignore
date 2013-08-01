@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-/**/*.sqlite
-/**/*.sql
+/db/*.sql
 /public
-
-=======
 *.rbc
 *.sassc
 .sass-cache
@@ -20,4 +16,4 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
->>>>>>> d4ef2dd1f9647e804c5c8fd4c4c3c78cceeece37
+

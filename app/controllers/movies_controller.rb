@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+  session.clear
 	@all_ratings = Movie.a_ratings 
     if params["sort"] == "title" then
 	session["sort"] = params["sort"]
@@ -19,7 +20,7 @@ class MoviesController < ApplicationController
 	#session["sort"] = params["sort"] 
 	end
 	
-	@buttons = session["ratings"]
+	@buttons = session["ratings"] ? session["ratings"] : @all_ratings
 	@sort = session["sort"]
 	if !@sort.nil? || !@buttons.nil?
 		flash.keep
@@ -30,7 +31,9 @@ class MoviesController < ApplicationController
     @movies = Movie.order(@sort)
     @movies = @movies.find_all_by_rating(@buttons.keys) unless @buttons.nil?
     @buttons.nil? && @movies={}
+      session.nil? ? @movies = Movie.all : @movies
   end
+
 
   def new
     # default: render 'new' template

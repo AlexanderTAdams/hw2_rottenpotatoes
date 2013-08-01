@@ -1,6 +1,6 @@
 -#  This file is app/views/movies/index.html.haml
 %h1 All Movies
-= form_tag movies_path, :method => :get do
+%ratings_form = form_tag movies_path, :method => :get do
   Include: 
   - @all_ratings.each do |rating|
     = rating
@@ -23,13 +23,12 @@
         %td= movie.release_date
         %td= link_to "More about #{movie.title}", movie_path(movie)
 
-= link_to 'Add new movie', new_movie_path
--# add to end of app/views/movies/index.html.haml:
+=link_to 'Add new movie', new_movie_path
+/add to end of app/views/movies/index.html.haml:
 
 %h1 Search TMDb for a movie
 
-= form_tag :action => 'search_tmdb' do
-
-  %label{:for => 'search_terms'} Search Terms
-  = text_field_tag 'search_terms'
-  = submit_tag 'Search TMDb'
+/=form_tag :action => 'search_tmdb' do
+/%label{:for => 'search_terms'} Search Terms
+/= text_field_tag 'search_terms'
+/= submit_tag 'Search TMDb'
