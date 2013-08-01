@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    session.clear
 	@all_ratings = Movie.a_ratings 
     if params["sort"] == "title" then
 	session["sort"] = params["sort"]
