@@ -506,3 +506,23 @@ Served asset /jquery_ujs.js - 200 OK (14ms)
 
 Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2013-07-31 20:52:36 -0700
 Served asset /jquery.js - 200 OK (57ms)
+
+
+Started GET "/" for 127.0.0.1 at 2013-08-01 20:37:22 -0700
+  Processing by MoviesController#index as HTML
+Rendered movies/index.html.haml within layouts/application (19.0ms)
+Completed 500 Internal Server Error in 86ms
+
+ActionView::Template::Error (Illegal nesting: content can't be both given on the same line as %ratings_form and nested within it.):
+    1: -#  This file is app/views/movies/index.html.haml
+    2: %h1 All Movies
+    3: %ratings_form = form_tag movies_path, :method => :get do
+    4:   Include: 
+    5:   - @all_ratings.each do |rating|
+    6:     = rating
+    7:     = check_box_tag "ratings[#{rating}]" ,"1", !@buttons.nil? && @buttons.has_key?(rating) || session.nil?, id:"ratings_#{rating}"
+  app/views/movies/index.html.haml:4
+
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.8ms)
+Rendered /usr/local/lib/ruby/gems/1.9.1/gems/actionpack-3.1.0/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (35.6ms)
